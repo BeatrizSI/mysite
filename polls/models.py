@@ -10,10 +10,6 @@ class Question(models.Model):
     creation_date = models.DateTimeField(
         'Data da criação', default=timezone.now)
 
-    def most_voted(self, ):
-
-        return Choice.objects.filter(question=self)
-
     def was_published_recently(self):
         ontem = timezone.now() - timedelta(days=1)
         return self.pub_date >= ontem
