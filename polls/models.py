@@ -1,6 +1,7 @@
 from datetime import timedelta
 from django.db import models
 from django.utils import timezone
+from django.db.models import Max
 
 
 class Question(models.Model):
@@ -9,6 +10,10 @@ class Question(models.Model):
     pub_date = models.DateTimeField('Data de publição')
     creation_date = models.DateTimeField(
         'Data da criação', default=timezone.now)
+
+    def votos(self):
+
+        return Choice.objects.filter(question=self).order_by('-votes').first()
 
     def was_published_recently(self):
         ontem = timezone.now() - timedelta(days=1)
