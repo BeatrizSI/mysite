@@ -28,6 +28,13 @@ class Choice(models.Model):
         Question, on_delete=models.CASCADE, verbose_name='questão')
     choice_text = models.CharField('texto da escolha', max_length=200)
     votes = models.IntegerField('Nº de votos', default=0)
+    pub_date = models.DateTimeField('Data de publição')
+    creation_date = models.DateTimeField(
+        'Data da criação', default=timezone.now)
+
+    def was_published_recently(self):
+        ontem = timezone.now() - timedelta(days=1)
+        return self.pub_date >= ontem
 
     def __str__(self):
         return self.choice_text
