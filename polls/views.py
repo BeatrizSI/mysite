@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 
-from polls.models import Question
+from polls.models import Question,Choice
 
 
 
@@ -24,6 +24,15 @@ def detail(request, question_id, template_name='polls/detail.html'):
 
     return render(request,template_name , context )
 
+def votos(request,question_id,template_name='polls/votos.html'):
+    question = get_object_or_404(Question,id=question_id)
+    
+
+    context = {
+        "question": question,
+    }
+
+    return render(request,template_name,context)
 
 
 def sobre(request):
