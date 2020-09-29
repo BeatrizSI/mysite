@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 
 from polls.models import Question,Choice
@@ -24,7 +24,7 @@ def detail(request, question_id, template_name='polls/detail.html'):
 
     return render(request,template_name , context )
 
-def votos(request,question_id,template_name='polls/votos.html'):
+def result(request,question_id,template_name='polls/result.html'):
     question = get_object_or_404(Question,id=question_id)
     
 
@@ -33,6 +33,12 @@ def votos(request,question_id,template_name='polls/votos.html'):
     }
 
     return render(request,template_name,context)
+
+def vote(request,question_id):
+    question = get_object_or_404(Question,id=question_id)
+    print(request.POST)
+
+    return redirect('detail', question_id)
 
 
 def sobre(request):
