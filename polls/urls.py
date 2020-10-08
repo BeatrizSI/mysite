@@ -3,8 +3,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:question_id>',views.detail, name='detail'),
-    path('<int:question_id>/votos/', views.votos, name='votos'),
-    path('sobre', views.sobre, name='sobre'),
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>',views.DetailView.as_view(), name='detail'),
+    path('<int:question_id>/vote/', views.VoteView.as_view(), name='vote'),
+    path('<int:question_id>/result/', views.ResultView.as_view(), name='result'),
+    path('sobre', views.SobreView.as_view(), name='sobre'),
 ]
