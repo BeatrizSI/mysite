@@ -34,7 +34,6 @@ class ResultView(generic.ListView):
 
 '''def result(request, question_id, template_name='polls/result.html'):
     question = get_object_or_404(Question, id=question_id)
-
     context = {
         "question": question,
     }
@@ -64,4 +63,3 @@ class SobreView(generic.TemplateView):
     print('view - sobre')
     return HttpResponse("Dupla: Antony Raul e Maria Beatriz")
 '''
-
