@@ -26,14 +26,15 @@ class DetailView(generic.DetailView):
         return render(request, template_name, context)'''
 
 
-class ResultView(generic.ListView):
+class ResultView(generic.ListView ):
     template_name = 'polls/result.html'
-    context_object_name = "latest_question_list"
+    context_object_name = "question"
     model = Question
 
 
 '''def result(request, question_id, template_name='polls/result.html'):
     question = get_object_or_404(Question, id=question_id)
+
     context = {
         "question": question,
     }
@@ -63,3 +64,4 @@ class SobreView(generic.TemplateView):
     print('view - sobre')
     return HttpResponse("Dupla: Antony Raul e Maria Beatriz")
 '''
+
