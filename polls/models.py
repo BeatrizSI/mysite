@@ -5,6 +5,11 @@ from django.db.models import Max
 
 
 class Question(models.Model):
+    class Meta:
+        verbose_name = 'Questão'
+        verbose_name_plural = 'Questões'
+        ordering = ('-pub_date',)
+
     question_text = models.CharField(
         'Texto da questão', max_length=200, help_text='informe o texto da questão')
     pub_date = models.DateTimeField('Data de publição')
@@ -27,6 +32,10 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
+    class Meta:
+        verbose_name = 'Opção'
+        verbose_name_plural = 'Opções'
+
     question = models.ForeignKey(
         Question, on_delete=models.CASCADE, verbose_name='questão')
     choice_text = models.CharField('texto da escolha', max_length=200)
