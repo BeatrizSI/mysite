@@ -15,7 +15,7 @@ class Question(models.Model):
     pub_date = models.DateTimeField('Data de publição')
     creation_date = models.DateTimeField(
         'Data da criação', default=timezone.now)
-
+    is_public = models.BooleanField(default=False)
     def votos(self):
 
         return Choice.objects.filter(question=self).order_by('-votes').first()
