@@ -10,14 +10,15 @@ class IndexView(generic.ListView):
     context_object_name = "latest_question_list"
 
     def get_queryset(self):
-        return Question.objects.all().order_by('-pub_date')[:5]
+        return Question.objects.exclude(is_public = False).order_by('-pub_date')
 
 
 class DetailView(generic.DetailView):
     template_name = 'polls/detail.html'
     model = Question
 
-
+    def get_queryset(self):
+        return Question.objects.exclude(is_public = False).order_by('-pub_date')
 ''' def detail(request, question_id, template_name='polls/detail.html'):
         question = get_object_or_404(Question, id=question_id)
         context = {
@@ -31,7 +32,8 @@ class ResultView(generic.ListView ):
     context_object_name = "question"
     model = Question
 
-
+    def get_queryset(self):
+        return Question.objects.exclude(is_public = False).order_by('-pub_date')
 '''def result(request, question_id, template_name='polls/result.html'):
     question = get_object_or_404(Question, id=question_id)
 
@@ -49,7 +51,8 @@ class VoteView(generic.View):
         choice.save()
         return redirect('result', question_id)
 
-
+    def get_queryset(self):
+        return Question.objects.exclude(is_public = False).order_by('-pub_date')
         #return redirect('detail', question_id)
 
 
